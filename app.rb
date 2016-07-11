@@ -9,11 +9,12 @@ class App < Sinatra::Base
     params = JSON.parse(request.body.read)
 
     params['result'].each do |msg|
+      msg['content']['text'] = msg['content']['from']
       request_content = {
         to: [msg['content']['from']],
         toChannel: 1383378250, # Fixed  value
         eventType: "138311608800106203", # Fixed value
-        content: [msg['content']['from']]
+        content: msg['content']
       }
 
       endpoint_uri = 'https://trialbot-api.line.me/v1/events'
