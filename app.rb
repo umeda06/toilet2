@@ -6,7 +6,7 @@ require 'rest-client'
 
 class App < Sinatra::Base
   post '/odor' do
-    @odor = @params[:odor]
+    @@odor = @params[:odor]
   end
 
   post '/linebot/callback' do
@@ -36,7 +36,7 @@ class App < Sinatra::Base
 =end
 
     params['result'].each do |msg|
-      msg['content']['text'] = @odor + "ヘクサだよ"
+      msg['content']['text'] = @@odor + "ヘクサだよ"
       request_content = {
         to: [msg['content']['from']],
         toChannel: 1383378250, # Fixed  value
