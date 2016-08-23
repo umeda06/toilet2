@@ -5,6 +5,8 @@ require 'json'
 require 'rest-client'
 
 class App < Sinatra::Base
+  @@odor = "700"
+
   post '/odor' do
     @@odor = @params[:odor]
   end
